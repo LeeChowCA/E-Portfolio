@@ -5,6 +5,9 @@ declare module "@material-tailwind/react" {
         color?: string;
         className?: string;
         children?: React.ReactNode;
+        placeholder?: string;
+        onPointerEnterCapture?: React.PointerEventHandler<HTMLElement>;
+        onPointerLeaveCapture?: React.PointerEventHandler<HTMLElement>;
         // Add any other props you use
     }
     export const Typography: React.FC<TypographyProps>;
