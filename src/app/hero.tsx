@@ -14,7 +14,7 @@ function Hero() {
               color="blue-gray"
               className="mb-4 lg:text-5xl !leading-tight text-3xl"
             >
-              Welcome to Lee's Web <br /> Development Portofolio!
+              Welcome to Lee&apos;s Web <br /> Development Portofolio!
             </Typography>
             <Typography
               variant="lead"
