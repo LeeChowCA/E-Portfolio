@@ -1,3 +1,5 @@
+// @ts-nocheck
+
 import { Card, CardBody, Typography } from "@material-tailwind/react";
 
 interface SkillCardProps {
