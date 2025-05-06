@@ -5,6 +5,14 @@ import { Typography } from "@material-tailwind/react";
 
 const PROJECTS = [
   {
+    img: "/image/gorillaNote.png",
+    title: "Gorilla Note(Full Stack with ChatGPT)",
+    desc: "It's a Web app for taking notes. Users can AI questions in real time about the note content；Developed with Next.js, Supabase, ShadCN, Prisma, ChatGPT API and deployed on Vercel.",
+    link:"https://goat-notes-basjs5e45-leechowcas-projects.vercel.app/"
+  },
+  
+  {
+    
     img: "/image/warpedCity.png",
     title: "2D Game: Warped City",
     desc: "Developed using Unity and C#, player has multiple animations including jumping, running, ducking etc and can shoot enemies.",
@@ -40,12 +48,7 @@ const PROJECTS = [
     desc: "Developed a multiplayer Battleship game using Python with socket programming for server-client communication; Implemented multi-threading to handle two clients simultaneously, ensuring smooth gameplay",
     link:"https://github.com/Lee-School/226_game"
   },
-  // {
-  //   img: "/image/blog3.svg",
-  //   title: "Mobile App Development",
-  //   desc: "Mobile app designed to help users discover and explore local restaurants and cuisines.",
-  //   link:"/warpedcity"
-  // },
+  
   // {
   //   img: "/image/blog4.svg",
   //   title: "E-commerce development",
