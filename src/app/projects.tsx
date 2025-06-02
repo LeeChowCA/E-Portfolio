@@ -8,7 +8,7 @@ const PROJECTS = [
     img: "/image/gorillaNote.png",
     title: "Gorilla Note(Full Stack with ChatGPT)",
     desc: "It's a Web app for taking notes. Users can AI questions in real time about the note content；Developed with Next.js, Supabase, ShadCN, Prisma, ChatGPT API and deployed on Vercel.",
-    link:"https://goat-notes-basjs5e45-leechowcas-projects.vercel.app/"
+    link:"https://goat-notes-git-main-leechowcas-projects.vercel.app"
   },
   
   {
