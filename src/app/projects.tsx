@@ -49,12 +49,12 @@ const PROJECTS = [
     link:"https://github.com/Lee-School/226_game"
   },
   
-  // {
-  //   img: "/image/blog4.svg",
-  //   title: "E-commerce development",
-  //   desc: "Ecommerce website offering  access to the latest and greatest gadgets and accessories.",
-  //   link:"/warpedcity"
-  // },
+  {
+    img: "/image/blog4.svg",
+    title: "Rocket Drone",
+    desc: "Rebuilt the Learning Management System (LMS) for the website from the ground up. Utilized Agile methodologies and implemented a CI/CD pipeline to ensure efficient development and continuous deployment.",
+    link:"/https://www.rocketdrones.com"
+  },
 ];
 
 export function Projects() {
