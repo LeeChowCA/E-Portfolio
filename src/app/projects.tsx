@@ -50,7 +50,7 @@ const PROJECTS = [
   },
   
   {
-    img: "/image/rocketdrone.png",
+    img: "/image/rocketDrone.png",
     title: "Rocket Drone",
     desc: "Rebuilt the Learning Management System (LMS) for the website from the ground up. Utilized Agile methodologies and implemented a CI/CD pipeline to ensure efficient development and continuous deployment.",
     link:"https://www.rocketdrones.com"
