@@ -6,9 +6,16 @@ import { Typography } from "@material-tailwind/react";
 const PROJECTS = [
   {
     img: "/image/gorillaNote.png",
-    title: "Gorilla Note(Full Stack with ChatGPT)",
+    title: "Gorilla Note(Full Stack with ChatGPT API)",
     desc: "It's a Web app for taking notes. Users can AI questions in real time about the note content；Developed with Next.js, Supabase, ShadCN, Prisma, ChatGPT API and deployed on Vercel.",
     link:"https://goat-notes-git-main-leechowcas-projects.vercel.app"
+  },
+
+  {
+    img: "/image/rocketDrone.png",
+    title: "Rocket Drone",
+    desc: "Rebuilt the Learning Management System (LMS) for the website from the ground up. Utilized Agile methodologies and implemented a CI/CD pipeline to ensure efficient development and continuous deployment.",
+    link:"https://www.rocketdrones.com"
   },
   
   {
@@ -30,6 +37,12 @@ const PROJECTS = [
     desc: "Full Stack website developed using Next.js, Firebase, Tailwind CSS, NextAuth. It's a website where you can find the teammates for your favorite sports. ",
     link:"https://findteammates.vercel.app"
   },
+    {
+    img: "/image/express.png",
+    title: "Express API",
+    desc: "Developed a RESTful API using Express.js and Node.js, providing a robust backend for web applications. Implemented JWT authentication and integrated with MongoDB for data storage.",
+    link:"https://github.com/LeeChowCA/ExpressAPI"
+  },
   {
     img: "/image/wordle.png",
     title: "AWS Serverless: Wordle Game",
@@ -49,12 +62,14 @@ const PROJECTS = [
     link:"https://github.com/Lee-School/226_game"
   },
   
+  
   {
-    img: "/image/rocketDrone.png",
-    title: "Rocket Drone",
-    desc: "Rebuilt the Learning Management System (LMS) for the website from the ground up. Utilized Agile methodologies and implemented a CI/CD pipeline to ensure efficient development and continuous deployment.",
-    link:"https://www.rocketdrones.com"
+    img: "/image/tetris.png",
+    title: "Tetris Game",
+    desc: "Developed a Tetris game using C++ focusing on smooth gameplay mechanics and captivating visuals.",
+    link:"https://github.com/LeeChowCA/Tetris"
   },
+
 ];
 
 export function Projects() {
