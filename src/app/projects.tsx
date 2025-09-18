@@ -77,7 +77,7 @@ export function Projects() {
     <section className="py-28 px-8">
       <div className="container mx-auto mb-20 text-center">
         <Typography variant="h2" color="blue-gray" className="mb-4">
-          My Projects
+          My Other Projects
         </Typography>
         <Typography
           variant="lead"

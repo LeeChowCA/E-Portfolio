@@ -5,6 +5,7 @@ import { Navbar, Footer } from "@/components";
 import Hero from "./hero";
 import Clients from "./clients";
 import Skills from "./skills";
+import LMS from "./lms";
 import Projects from "./projects";
 import Resume from "./resume";
 import Testimonial from "./testimonial";
@@ -16,6 +17,7 @@ export default function Portfolio() {
     <>
       <Navbar />
       <Hero />
+      <LMS />
       <Projects />
       {/* <Clients /> */}
       <Skills />
