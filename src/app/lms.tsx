@@ -1,9 +1,9 @@
 // @ts-nocheck
 "use client";
 
+import { useState } from "react";
 import Image from "next/image";
-import { Typography, Button, Card, CardBody } from "@material-tailwind/react";
-import Link from "next/link";
+import { Typography, Button, Card, CardBody, Tooltip, Dialog, DialogBody } from "@material-tailwind/react";
 
 const LMS_FEATURES = [
   {
@@ -49,6 +49,9 @@ const LMS_FEATURES = [
 ];
 
 export function LMS() {
+  const [activeImage, setActiveImage] = useState(null);
+  const handleClose = () => setActiveImage(null);
+
   return (
     <section className="py-20 px-8">
       <div className="container mx-auto">
@@ -116,14 +119,21 @@ export function LMS() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 mb-16">
           {LMS_FEATURES.map((feature, idx) => (
             <Card key={idx} className="mt-6 hover:shadow-lg transition-shadow duration-300" shadow={false}>
-              <div className="relative h-48 w-full overflow-hidden rounded-t-lg">
-                <Image
-                  src={feature.img}
-                  alt={feature.title}
-                  fill
-                  className="object-cover hover:scale-105 transition-transform duration-300"
-                />
-              </div>
+              <Tooltip content="Click to see the full image" placement="top">
+                <button
+                  type="button"
+                  className="relative h-48 w-full overflow-hidden rounded-t-lg group cursor-zoom-in focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
+                  onClick={() => setActiveImage({ src: feature.img, title: feature.title })}
+                  aria-label={`Open full image for ${feature.title}`}
+                >
+                  <Image
+                    src={feature.img}
+                    alt={feature.title}
+                    fill
+                    className="object-cover transition-transform duration-300 group-hover:scale-105"
+                  />
+                </button>
+              </Tooltip>
               <CardBody className="p-6">
                 <Typography 
                   variant="h5" 
@@ -147,6 +157,36 @@ export function LMS() {
             </Card>
           ))}
         </div>
+
+        {activeImage && (
+          <Dialog
+            open={Boolean(activeImage)}
+            handler={handleClose}
+            size="xl"
+            className="bg-transparent shadow-none"
+          >
+            <DialogBody className="p-0">
+              <div className="overflow-hidden rounded-lg bg-black">
+                <div className="relative h-[80vh] w-full">
+                  <Image
+                    src={activeImage.src}
+                    alt={activeImage.title}
+                    fill
+                    className="object-contain"
+                  />
+                </div>
+                <div className="flex items-center justify-between bg-white px-4 py-3">
+                  <span className="text-sm font-medium text-gray-900">
+                    {activeImage.title}
+                  </span>
+                  <Button size="sm" variant="text" color="gray" onClick={handleClose}>
+                    Close
+                  </Button>
+                </div>
+              </div>
+            </DialogBody>
+          </Dialog>
+        )}
 
         {/* Key Features Section */}
         <div className="bg-white rounded-2xl p-8 shadow-lg">
