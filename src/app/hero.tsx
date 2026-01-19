@@ -1,67 +1,176 @@
 // @ts-nocheck
 "use client";
 
+import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
-import { Input, Button, Typography } from "@material-tailwind/react";
+import { Typography } from "@material-tailwind/react";
+import { Bebas_Neue } from "next/font/google";
+
+const bebas = Bebas_Neue({
+  subsets: ["latin"],
+  weight: ["400"],
+  display: "swap",
+});
 
 function Hero() {
-  return (
-    <>
-      <header className="p-8">
-        <div className="container mx-auto grid h-full gap-10 min-h-[60vh] w-full grid-cols-1 items-center lg:grid-cols-2">
-          <div className="row-start-2 lg:row-auto">
-            <Typography
-              variant="h1"
-              color="blue-gray"
-              className="mb-4 lg:text-5xl !leading-tight text-3xl"
-            >
-              Welcome to Lee&apos;s Web <br /> Development Portofolio!
-            </Typography>
-            <Typography
-              variant="lead"
-              className="mb-4 !text-gray-500 md:pr-16 xl:pr-28"
-            >
-              Hello! It’s wonderful to connect with you. I’m Lee Zhou,
-              a dedicated web developer with a love for blending creativity and functionality.
-              Here, you’ll discover my journey through the ever-evolving world of web development—where innovative ideas come to life through clean,
-              efficient code.
-            </Typography>
+  const sectionRef = useRef(null);
+  const [isVisible, setIsVisible] = useState(false);
+  const [hoveredSide, setHoveredSide] = useState(null);
 
-            <Typography variant="lead"
-              className=" !text-gray-800 md:pr-16 xl:pr-28 font-bold mt-24">
-                CONTACT ME AT : zhoujianpingls@outlook.com
-            </Typography>
-            {/* <div className="grid">
-            <Typography
-              variant="small"
-              className="mb-2 text-gray-900 font-medium"
+  const heroImages = {
+    developer: { src: "/image/developer.jpg", alt: "Developer portrait" },
+    developerAvatar: { src: "/image/developer-avatar.png", alt: "Developer avatar" },
+    bodybuilder: { src: "/image/bodyBuilding.jpg", alt: "Bodybuilder portrait" },
+  };
+
+  const hoverImageMap = {
+    left: "bodybuilder",
+    right: "developerAvatar",
+  };
+
+  const activeImageKey = hoveredSide ? hoverImageMap[hoveredSide] : "developer";
+  const isDeveloperActive = activeImageKey === "developer";
+  const isDeveloperAvatarActive = activeImageKey === "developerAvatar";
+  const isBodybuilderActive = activeImageKey === "bodybuilder";
+
+  const handleMouseMove = (event) => {
+    const section = sectionRef.current;
+    if (!section) return;
+    const rect = section.getBoundingClientRect();
+    const nextSide = event.clientX < rect.left + rect.width / 2 ? "left" : "right";
+    setHoveredSide((prev) => (prev === nextSide ? prev : nextSide));
+  };
+
+  useEffect(() => {
+    const section = sectionRef.current;
+    if (!section) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.2 }
+    );
+
+    observer.observe(section);
+
+    return () => observer.disconnect();
+  }, []);
+
+  const fadeClass = isVisible ? "animate-fade-up" : "opacity-0 translate-y-6";
+
+  return (
+    <section
+      id="about"
+      ref={sectionRef}
+      className="relative overflow-hidden bg-white px-4 pb-20 pt-12 sm:px-6 sm:pb-24 sm:pt-16 lg:px-8"
+      onMouseMove={handleMouseMove}
+      onMouseLeave={() => setHoveredSide(null)}
+    >
+      <div className="pointer-events-none absolute inset-0">
+        <div className="absolute -left-10 top-10 h-40 w-40 rounded-full bg-[#F1F1F1] opacity-70" />
+        <div className="absolute bottom-0 right-10 h-56 w-56 rounded-full bg-[#F6F6F6] opacity-80" />
+        <div className="absolute left-1/2 top-16 hidden h-[70%] w-px -translate-x-1/2 bg-gray-200 lg:block" />
+      </div>
+
+      <div className="container mx-auto grid grid-cols-1 items-center gap-8 sm:gap-10 lg:grid-cols-[1fr_auto_1fr]">
+        <div
+          className={`order-1 min-w-0 text-center lg:order-1 lg:text-right relative ${fadeClass} before:content-[''] before:absolute before:inset-0 before:bg-[url('/image/hero-grid.svg')] before:bg-cover before:bg-center before:opacity-[0.06] before:pointer-events-none`}
+          style={{ animationDelay: "0ms" }}
+        >
+          <div className="relative z-10 px-4 py-8 sm:px-6 sm:py-10">
+            <p className="text-xs uppercase tracking-[0.35em] text-gray-500">
+              Strength
+            </p>
+            <h1
+              className={`${bebas.className} mt-3 text-5xl uppercase tracking-[0.08em] text-[#111111] sm:text-6xl lg:text-6xl xl:text-7xl`}
             >
-              Your email
+              Bodybuilder
+            </h1>
+            <Typography className="mt-4 text-sm text-gray-600 sm:text-base">
+              Built on discipline, routine, and performance. I bring that same
+              focus into every project I ship.
             </Typography>
-            <div className="mb-2 flex w-full flex-col gap-4 md:w-10/12 md:flex-row">
-              <Input color="gray" label="Enter your email" size="lg" />
-              <Button color="gray" className="w-full px-4 md:w-[12rem]">
-                Contact Me
-              </Button>
-            </div>
           </div>
-          <Typography variant="small" className="font-normal !text-gray-500">
-            Read my{" "}
-            <a href="#" className="font-medium underline transition-colors">
-              Terms and Conditions
-            </a>
-          </Typography> */}
-          </div>
-          <Image
-            width={1024}
-            height={1024}
-            alt="team work"
-            src="/image/portfolio.png"
-            className="h-[36rem] w-full rounded-xl object-cover"
-          />
         </div>
-      </header>
-    </>
+
+        <div
+          className={`order-2 flex justify-center lg:order-2 ${fadeClass}`}
+          style={{ animationDelay: "120ms" }}
+        >
+          <div className="relative aspect-square w-[clamp(14rem,32vw,28rem)]">
+            <div className="absolute inset-0 rounded-full bg-white shadow-[0_30px_70px_rgba(0,0,0,0.15)]" />
+            <Image
+              src={heroImages.developer.src}
+              alt={heroImages.developer.alt}
+              fill
+              priority
+              className={`rounded-full object-cover transition-all duration-500 ease-out ${
+                isDeveloperActive ? "opacity-100 scale-100" : "opacity-0 scale-[0.98]"
+              }`}
+              sizes="(min-width: 1280px) 28rem, (min-width: 640px) 32vw, 14rem"
+            />
+            <Image
+              src={heroImages.developerAvatar.src}
+              alt={heroImages.developerAvatar.alt}
+              fill
+              className={`rounded-full object-cover transition-all duration-500 ease-out ${
+                isDeveloperAvatarActive ? "opacity-100 scale-100" : "opacity-0 scale-[0.98]"
+              }`}
+              sizes="(min-width: 1280px) 28rem, (min-width: 640px) 32vw, 14rem"
+            />
+            <Image
+              src={heroImages.bodybuilder.src}
+              alt={heroImages.bodybuilder.alt}
+              fill
+              className={`rounded-full object-cover transition-all duration-500 ease-out ${
+                isBodybuilderActive ? "opacity-100 scale-100" : "opacity-0 scale-[0.98]"
+              }`}
+              sizes="(min-width: 1280px) 28rem, (min-width: 640px) 32vw, 14rem"
+            />
+            <div className="absolute inset-0 rounded-full bg-gradient-to-r from-white/40 via-transparent to-white/10" />
+          </div>
+        </div>
+
+        <div
+          className={`order-3 min-w-0 text-center lg:text-left relative ${fadeClass} before:content-[''] before:absolute before:inset-0 before:bg-[url('/image/hero-code.svg')] before:bg-cover before:bg-center before:opacity-[0.05] before:pointer-events-none`}
+          style={{ animationDelay: "220ms" }}
+        >
+          <div className="relative z-10 px-4 py-8 sm:px-6 sm:py-10">
+            <p className="text-xs uppercase tracking-[0.35em] text-gray-500">
+              Code
+            </p>
+            <h2
+              className={`${bebas.className} mt-3 text-5xl uppercase tracking-[0.08em] text-gray-900 sm:text-6xl lg:text-6xl xl:text-7xl`}
+            >
+              {"<developer>"}
+            </h2>
+            <Typography className="mt-4 text-sm text-gray-600 sm:text-base">
+              Front-end developer who builds fast, elegant, and scalable web
+              experiences with a focus on clarity and craft.
+            </Typography>
+          </div>
+        </div>
+      </div>
+
+      <div
+        className={`container mx-auto mt-12 text-center ${fadeClass}`}
+        style={{ animationDelay: "320ms" }}
+      >
+        <Typography className="text-xs uppercase tracking-[0.4em] text-gray-500">
+          Contact me at
+        </Typography>
+        <a
+          href="mailto:zhoujianpingls@outlook.com"
+          className="mt-2 inline-block text-sm font-semibold uppercase tracking-[0.3em] text-gray-900"
+        >
+          zhoujianpingls@outlook.com
+        </a>
+      </div>
+    </section>
   );
 }
 

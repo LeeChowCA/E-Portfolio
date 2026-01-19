@@ -32,7 +32,7 @@ export default function RootLayout({
         ></script>
         <link rel="shortcut icon" href="/favicon.png" type="image/png" />
       </head>
-      <body className={`${roboto.className} bg-gray-50`}>
+      <body className={`${roboto.className} bg-white text-gray-900`}>
         <Layout>
           {children}
           <FixedPlugin />

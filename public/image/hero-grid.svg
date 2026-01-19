@@ -1,0 +1,22 @@
+<svg width="400" height="400" viewBox="0 0 400 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <g stroke="#000000" stroke-width="1">
+    <path d="M0 50H400" />
+    <path d="M0 100H400" />
+    <path d="M0 150H400" />
+    <path d="M0 200H400" />
+    <path d="M0 250H400" />
+    <path d="M0 300H400" />
+    <path d="M0 350H400" />
+    <path d="M50 0V400" />
+    <path d="M100 0V400" />
+    <path d="M150 0V400" />
+    <path d="M200 0V400" />
+    <path d="M250 0V400" />
+    <path d="M300 0V400" />
+    <path d="M350 0V400" />
+  </g>
+  <g stroke="#000000" stroke-width="2">
+    <rect x="60" y="60" width="120" height="120" rx="10" />
+    <rect x="220" y="200" width="120" height="120" rx="10" />
+  </g>
+</svg>
