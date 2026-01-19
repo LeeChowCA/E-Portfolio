@@ -13,7 +13,7 @@ export function Navbar() {
       className="sticky top-0 z-50 rounded-none border-0 bg-[#111111]"
     >
       <div className="container mx-auto flex flex-wrap items-center justify-between gap-4 py-3">
-        <Link href="/#about" className="flex items-center gap-3 text-white">
+        <Link href="/" className="flex items-center gap-3 text-white">
           <span className="flex h-9 w-9 items-center justify-center rounded-full border border-white/40 text-xs font-bold tracking-[0.3em]">
             LZ
           </span>

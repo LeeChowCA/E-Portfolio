@@ -14,6 +14,7 @@ const bebas = Bebas_Neue({
 
 function Hero() {
   const sectionRef = useRef(null);
+  const centerRef = useRef(null);
   const [isVisible, setIsVisible] = useState(false);
   const [hoveredSide, setHoveredSide] = useState(null);
 
@@ -37,6 +38,16 @@ function Hero() {
     const section = sectionRef.current;
     if (!section) return;
     const rect = section.getBoundingClientRect();
+    const centerRect = centerRef.current?.getBoundingClientRect();
+    if (centerRect) {
+      if (event.clientX >= centerRect.left && event.clientX <= centerRect.right) {
+        setHoveredSide(null);
+        return;
+      }
+      const nextSide = event.clientX < centerRect.left ? "left" : "right";
+      setHoveredSide((prev) => (prev === nextSide ? prev : nextSide));
+      return;
+    }
     const nextSide = event.clientX < rect.left + rect.width / 2 ? "left" : "right";
     setHoveredSide((prev) => (prev === nextSide ? prev : nextSide));
   };
@@ -100,6 +111,7 @@ function Hero() {
         <div
           className={`order-2 flex justify-center lg:order-2 ${fadeClass}`}
           style={{ animationDelay: "120ms" }}
+          ref={centerRef}
         >
           <div className="relative aspect-square w-[clamp(14rem,32vw,28rem)]">
             <div className="absolute inset-0 rounded-full bg-white shadow-[0_30px_70px_rgba(0,0,0,0.15)]" />

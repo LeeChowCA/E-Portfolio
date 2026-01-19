@@ -1,31 +1,18 @@
 // components
 import { Navbar, Footer } from "@/components";
 
-// sections
 import Hero from "./hero";
-import Clients from "./clients";
-import Skills from "./skills";
 import FeaturedProjects from "./featured-projects";
-import Projects from "./projects";
-import Resume from "./resume";
-import Testimonial from "./testimonial";
-import PopularClients from "./popular-clients";
-import ContactForm from "./contact-form";
 
 export default function Portfolio() {
   return (
-    <>
+    <div className="min-h-screen flex flex-col">
       <Navbar />
-      <Hero />
-      <FeaturedProjects />
-      <Projects />
-      {/* <Clients /> */}
-      <Skills />
-      <Resume />
-      {/* <Testimonial /> */}
-      {/* <PopularClients /> */}
-      <ContactForm />
+      <main className="flex-1">
+        <Hero />
+        <FeaturedProjects />
+      </main>
       <Footer />
-    </>
+    </div>
   );
 }
