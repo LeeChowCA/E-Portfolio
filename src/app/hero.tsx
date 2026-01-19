@@ -12,7 +12,7 @@ const bebas = Bebas_Neue({
   display: "swap",
 });
 
-function Hero() {
+function Hero({ compact = false }) {
   const sectionRef = useRef(null);
   const centerRef = useRef(null);
   const [isVisible, setIsVisible] = useState(false);
@@ -29,10 +29,34 @@ function Hero() {
     right: "developerAvatar",
   };
 
+  
+  const fadeClass = isVisible ? "animate-fade-up" : "opacity-0 translate-y-6";
+
   const activeImageKey = hoveredSide ? hoverImageMap[hoveredSide] : "developer";
   const isDeveloperActive = activeImageKey === "developer";
   const isDeveloperAvatarActive = activeImageKey === "developerAvatar";
   const isBodybuilderActive = activeImageKey === "bodybuilder";
+  const sectionClassName = compact
+    ? "relative flex flex-col flex-1 overflow-hidden bg-white px-4 pb-12 pt-10 sm:px-6 sm:pb-14 sm:pt-14 lg:px-8"
+    : "relative overflow-hidden bg-white px-4 pb-20 pt-12 sm:px-6 sm:pb-24 sm:pt-16 lg:px-8";
+  const gridClassName = compact
+    ? "container mx-auto grid grid-cols-1 items-center gap-8 sm:gap-9 lg:grid-cols-[1fr_auto_1fr]"
+    : "container mx-auto grid grid-cols-1 items-center gap-8 sm:gap-10 lg:grid-cols-[1fr_auto_1fr]";
+  const contentPaddingClass = compact
+    ? "relative z-10 px-4 py-7 sm:px-6 sm:py-9"
+    : "relative z-10 px-4 py-8 sm:px-6 sm:py-10";
+  const titleClassName = compact
+    ? `${bebas.className} mt-3 text-5xl uppercase tracking-[0.08em] text-[#111111] sm:text-6xl lg:text-6xl xl:text-6xl`
+    : `${bebas.className} mt-3 text-5xl uppercase tracking-[0.08em] text-[#111111] sm:text-6xl lg:text-6xl xl:text-7xl`;
+  const codeTitleClassName = compact
+    ? `${bebas.className} mt-3 text-5xl uppercase tracking-[0.08em] text-gray-900 sm:text-6xl lg:text-6xl xl:text-6xl`
+    : `${bebas.className} mt-3 text-5xl uppercase tracking-[0.08em] text-gray-900 sm:text-6xl lg:text-6xl xl:text-7xl`;
+  const imageWrapClassName = compact
+    ? "relative aspect-square w-[clamp(14rem,30vw,26rem)]"
+    : "relative aspect-square w-[clamp(14rem,32vw,28rem)]";
+  const contactClassName = compact
+    ? `container mx-auto mt-auto pt-6 text-center ${fadeClass}`
+    : `container mx-auto mt-12 text-center ${fadeClass}`;
 
   const handleMouseMove = (event) => {
     const section = sectionRef.current;
@@ -71,13 +95,12 @@ function Hero() {
     return () => observer.disconnect();
   }, []);
 
-  const fadeClass = isVisible ? "animate-fade-up" : "opacity-0 translate-y-6";
 
   return (
     <section
       id="about"
       ref={sectionRef}
-      className="relative overflow-hidden bg-white px-4 pb-20 pt-12 sm:px-6 sm:pb-24 sm:pt-16 lg:px-8"
+      className={sectionClassName}
       onMouseMove={handleMouseMove}
       onMouseLeave={() => setHoveredSide(null)}
     >
@@ -87,17 +110,17 @@ function Hero() {
         <div className="absolute left-1/2 top-16 hidden h-[70%] w-px -translate-x-1/2 bg-gray-200 lg:block" />
       </div>
 
-      <div className="container mx-auto grid grid-cols-1 items-center gap-8 sm:gap-10 lg:grid-cols-[1fr_auto_1fr]">
+      <div className={gridClassName}>
         <div
           className={`order-1 min-w-0 text-center lg:order-1 lg:text-right relative ${fadeClass} before:content-[''] before:absolute before:inset-0 before:bg-[url('/image/hero-grid.svg')] before:bg-cover before:bg-center before:opacity-[0.06] before:pointer-events-none`}
           style={{ animationDelay: "0ms" }}
         >
-          <div className="relative z-10 px-4 py-8 sm:px-6 sm:py-10">
+          <div className={contentPaddingClass}>
             <p className="text-xs uppercase tracking-[0.35em] text-gray-500">
               Strength
             </p>
             <h1
-              className={`${bebas.className} mt-3 text-5xl uppercase tracking-[0.08em] text-[#111111] sm:text-6xl lg:text-6xl xl:text-7xl`}
+              className={titleClassName}
             >
               Bodybuilder
             </h1>
@@ -113,7 +136,7 @@ function Hero() {
           style={{ animationDelay: "120ms" }}
           ref={centerRef}
         >
-          <div className="relative aspect-square w-[clamp(14rem,32vw,28rem)]">
+          <div className={imageWrapClassName}>
             <div className="absolute inset-0 rounded-full bg-white shadow-[0_30px_70px_rgba(0,0,0,0.15)]" />
             <Image
               src={heroImages.developer.src}
@@ -151,12 +174,12 @@ function Hero() {
           className={`order-3 min-w-0 text-center lg:text-left relative ${fadeClass} before:content-[''] before:absolute before:inset-0 before:bg-[url('/image/hero-code.svg')] before:bg-cover before:bg-center before:opacity-[0.05] before:pointer-events-none`}
           style={{ animationDelay: "220ms" }}
         >
-          <div className="relative z-10 px-4 py-8 sm:px-6 sm:py-10">
+          <div className={contentPaddingClass}>
             <p className="text-xs uppercase tracking-[0.35em] text-gray-500">
               Code
             </p>
             <h2
-              className={`${bebas.className} mt-3 text-5xl uppercase tracking-[0.08em] text-gray-900 sm:text-6xl lg:text-6xl xl:text-7xl`}
+              className={codeTitleClassName}
             >
               {"<developer>"}
             </h2>
@@ -168,10 +191,7 @@ function Hero() {
         </div>
       </div>
 
-      <div
-        className={`container mx-auto mt-12 text-center ${fadeClass}`}
-        style={{ animationDelay: "320ms" }}
-      >
+      <div className={contactClassName} style={{ animationDelay: "320ms" }}>
         <Typography className="text-xs uppercase tracking-[0.4em] text-gray-500">
           Contact me at
         </Typography>
