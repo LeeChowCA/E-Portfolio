@@ -35,26 +35,26 @@ const FEATURED_PROJECTS = [
   },
 ];
 
-export function FeaturedProjects({ compact = false }) {
+export function FeaturedProjects({ compact = false, animate = false }) {
   const sectionClassName = compact
     ? "relative bg-[#F1F1F1] px-6 py-14"
     : "relative bg-[#F1F1F1] px-8 py-20";
+  const sectionAnimationClass = animate ? "landing-project-section" : "";
   const contentClassName = compact
     ? "container mx-auto relative max-w-[1180px]"
     : "container mx-auto relative max-w-[1200px]";
   const headerClassName = compact
-    ? "mb-8 text-center animate-fade-up"
-    : "mb-12 text-center animate-fade-up";
+    ? `mb-8 text-center ${animate ? "" : "animate-fade-up"}`
+    : `mb-12 text-center ${animate ? "" : "animate-fade-up"}`;
   const headerLineClassName = compact
     ? "flex items-center justify-center gap-3 text-[9px] uppercase tracking-[0.3em] text-gray-500"
     : "flex items-center justify-center gap-6 text-xs uppercase tracking-[0.35em] text-gray-500";
-  const titleClassName = compact ? "mt-2 text-xl" : "mt-4";
   const gridClassName = compact
     ? "grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3 justify-items-center"
     : "grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3 justify-items-center";
   const cardClassName = compact
-    ? "group w-full max-w-[320px] overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-[0_14px_26px_rgba(15,15,15,0.1)] animate-fade-up"
-    : "group w-full max-w-[360px] overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-[0_18px_28px_rgba(15,15,15,0.08)] animate-fade-up";
+    ? `group w-full max-w-[320px] overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-[0_14px_26px_rgba(15,15,15,0.1)] ${animate ? "" : "animate-fade-up"}`
+    : `group w-full max-w-[360px] overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-[0_18px_28px_rgba(15,15,15,0.08)] ${animate ? "" : "animate-fade-up"}`;
   const imageClassName = compact
     ? "relative h-36 w-full overflow-hidden rounded-xl bg-white"
     : "relative h-52 w-full overflow-hidden";
@@ -67,9 +67,13 @@ export function FeaturedProjects({ compact = false }) {
     ? "rounded-full bg-gray-100 px-2 py-0.5 text-[9px] font-medium text-gray-700"
     : "rounded-full bg-gray-100 px-3 py-1 text-xs font-medium text-gray-700";
   const showExtras = !compact;
+  const headerAnimationClass = animate ? "landing-project-title" : "";
 
   return (
-    <section id="work" className={sectionClassName}>
+    <section
+      id="work"
+      className={`${sectionClassName} ${sectionAnimationClass}`}
+    >
       {!compact && (
         <div className="pointer-events-none absolute inset-0">
           <div className="absolute -top-12 left-1/4 h-36 w-36 rounded-full bg-gray-100/70" />
@@ -78,7 +82,7 @@ export function FeaturedProjects({ compact = false }) {
       )}
 
       <div className={contentClassName}>
-        <div className={headerClassName}>
+        <div className={`${headerClassName} ${headerAnimationClass}`}>
           <div className={headerLineClassName}>
             <span className="h-px w-16 bg-gray-300" />
             <span>Some of my latest work</span>
@@ -94,6 +98,10 @@ export function FeaturedProjects({ compact = false }) {
             const isExternal = project.href?.startsWith("http");
             const tags = project.tags;
             const buttonClassName = compact ? "h-7 px-3 text-[10px]" : "";
+            const rowIndex = Math.floor(index / 3);
+            const cardStyle = animate
+              ? { animationDelay: `${1760 + rowIndex * 140}ms` }
+              : undefined;
             const ctaButton = project.href ? (
               isExternal ? (
                 <a
@@ -121,8 +129,8 @@ export function FeaturedProjects({ compact = false }) {
             return (
               <div
                 key={project.title}
-                className={cardClassName}
-                style={{ animationDelay: `${120 + index * 120}ms` }}
+                className={`${cardClassName} ${animate ? "landing-project-card" : ""}`}
+                style={cardStyle}
               >
                 <div className={imageWrapperClassName}>
                   <div className={imageClassName}>

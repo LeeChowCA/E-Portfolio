@@ -1,11 +1,18 @@
 // @ts-nocheck
+"use client";
 
 import Link from "next/link";
 import { NAV_ITEMS, SOCIAL_LINKS } from "./site-links";
 
 const CURRENT_YEAR = new Date().getFullYear();
 
-export function Footer({ compact = false }) {
+export function Footer({
+  compact = false,
+  className = "",
+  style,
+  animate = false,
+}) {
+  const animationClassName = animate ? "landing-footer" : "";
   const footerClassName = compact
     ? "bg-[#F6F6F6] px-6 py-6"
     : "bg-[#F6F6F6] px-8 py-10";
@@ -14,7 +21,7 @@ export function Footer({ compact = false }) {
     : "text-xs uppercase tracking-[0.2em] text-gray-500";
 
   return (
-    <footer className={footerClassName}>
+    <footer className={`${footerClassName} ${className} ${animationClassName}`} style={style}>
       <div className="container mx-auto flex flex-col items-center justify-between gap-6 md:flex-row">
         <span className={claimClassName}>(c) {CURRENT_YEAR} Lee Zhou</span>
 

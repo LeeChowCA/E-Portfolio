@@ -1,7 +1,7 @@
 // @ts-nocheck
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import Image from "next/image";
 import { Typography } from "@material-tailwind/react";
 import { Bebas_Neue } from "next/font/google";
@@ -12,10 +12,9 @@ const bebas = Bebas_Neue({
   display: "swap",
 });
 
-function Hero({ compact = false }) {
+function Hero({ compact = false, animate = false }) {
   const sectionRef = useRef(null);
   const centerRef = useRef(null);
-  const [isVisible, setIsVisible] = useState(false);
   const [hoveredSide, setHoveredSide] = useState(null);
 
   const heroImages = {
@@ -30,7 +29,10 @@ function Hero({ compact = false }) {
   };
 
   
-  const fadeClass = isVisible ? "animate-fade-up" : "opacity-0 translate-y-6";
+  const leftClass = animate ? "landing-hero-left" : "";
+  const centerClass = animate ? "landing-hero-center" : "";
+  const rightClass = animate ? "landing-hero-right" : "";
+  const contactFadeClass = animate ? "landing-hero-contact" : "";
 
   const activeImageKey = hoveredSide ? hoverImageMap[hoveredSide] : "developer";
   const isDeveloperActive = activeImageKey === "developer";
@@ -55,8 +57,8 @@ function Hero({ compact = false }) {
     ? "relative aspect-square w-[clamp(14rem,30vw,26rem)]"
     : "relative aspect-square w-[clamp(14rem,32vw,28rem)]";
   const contactClassName = compact
-    ? `container mx-auto mt-auto pt-6 text-center ${fadeClass}`
-    : `container mx-auto mt-12 text-center ${fadeClass}`;
+    ? `container mx-auto mt-auto pt-6 text-center ${contactFadeClass}`
+    : `container mx-auto mt-12 text-center ${contactFadeClass}`;
 
   const handleMouseMove = (event) => {
     const section = sectionRef.current;
@@ -76,26 +78,6 @@ function Hero({ compact = false }) {
     setHoveredSide((prev) => (prev === nextSide ? prev : nextSide));
   };
 
-  useEffect(() => {
-    const section = sectionRef.current;
-    if (!section) return;
-
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true);
-          observer.disconnect();
-        }
-      },
-      { threshold: 0.2 }
-    );
-
-    observer.observe(section);
-
-    return () => observer.disconnect();
-  }, []);
-
-
   return (
     <section
       id="about"
@@ -112,8 +94,7 @@ function Hero({ compact = false }) {
 
       <div className={gridClassName}>
         <div
-          className={`order-1 min-w-0 text-center lg:order-1 lg:text-right relative ${fadeClass} before:content-[''] before:absolute before:inset-0 before:bg-[url('/image/hero-grid.svg')] before:bg-cover before:bg-center before:opacity-[0.06] before:pointer-events-none`}
-          style={{ animationDelay: "0ms" }}
+          className={`order-1 min-w-0 text-center lg:order-1 lg:text-right relative ${leftClass} before:content-[''] before:absolute before:inset-0 before:bg-[url('/image/hero-grid.svg')] before:bg-cover before:bg-center before:opacity-[0.06] before:pointer-events-none`}
         >
           <div className={contentPaddingClass}>
             <p className="text-xs uppercase tracking-[0.35em] text-gray-500">
@@ -132,11 +113,10 @@ function Hero({ compact = false }) {
         </div>
 
         <div
-          className={`order-2 flex justify-center lg:order-2 ${fadeClass}`}
-          style={{ animationDelay: "120ms" }}
+          className="order-2 flex justify-center lg:order-2"
           ref={centerRef}
         >
-          <div className={imageWrapClassName}>
+          <div className={`${imageWrapClassName} ${centerClass}`}>
             <div className="absolute inset-0 rounded-full bg-white shadow-[0_30px_70px_rgba(0,0,0,0.15)]" />
             <Image
               src={heroImages.developer.src}
@@ -171,8 +151,7 @@ function Hero({ compact = false }) {
         </div>
 
         <div
-          className={`order-3 min-w-0 text-center lg:text-left relative ${fadeClass} before:content-[''] before:absolute before:inset-0 before:bg-[url('/image/hero-code.svg')] before:bg-cover before:bg-center before:opacity-[0.05] before:pointer-events-none`}
-          style={{ animationDelay: "220ms" }}
+          className={`order-3 min-w-0 text-center lg:text-left relative ${rightClass} before:content-[''] before:absolute before:inset-0 before:bg-[url('/image/hero-code.svg')] before:bg-cover before:bg-center before:opacity-[0.05] before:pointer-events-none`}
         >
           <div className={contentPaddingClass}>
             <p className="text-xs uppercase tracking-[0.35em] text-gray-500">
@@ -184,14 +163,14 @@ function Hero({ compact = false }) {
               {"<developer>"}
             </h2>
             <Typography className="mt-4 text-sm text-gray-600 sm:text-base">
-              Front-end developer who builds fast, elegant, and scalable web
-              experiences with a focus on clarity and craft.
+              Full-stack and AI-focused developer building fast, scalable
+              products with clear architecture and thoughtful UX.
             </Typography>
           </div>
         </div>
       </div>
 
-      <div className={contactClassName} style={{ animationDelay: "320ms" }}>
+      <div className={contactClassName}>
         <Typography className="text-xs uppercase tracking-[0.4em] text-gray-500">
           Contact me at
         </Typography>
