@@ -90,7 +90,7 @@ export function Skills() {
     <div className="bg-white">
       <section
         id="skills"
-        className="relative overflow-hidden bg-white px-6 pb-16 pt-20"
+        className="relative overflow-hidden bg-white px-6 pb-16 pt-20 animate-fade-up"
       >
         <div className="pointer-events-none absolute inset-0">
           <div className="absolute -left-20 top-12 h-56 w-56 rounded-full bg-[#F4F4F4]" />
@@ -197,7 +197,7 @@ export function Skills() {
         </div>
       </section>
 
-      <section className="bg-[#F6F6F6] px-8 pb-16 pt-16">
+      <section className="bg-[#F6F6F6] px-8 pb-16 pt-16 animate-fade-up">
         <div className="container mx-auto mb-16 text-center">
           <Typography color="blue-gray" className="mb-2 font-bold uppercase">
             my skills

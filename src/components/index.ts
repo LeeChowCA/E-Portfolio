@@ -2,6 +2,7 @@
 
 export * from "./navbar";
 export * from "./footer";
+export * from "./page-shell";
 export * from "./layout";
 export * from "./project-card";
 export * from "./resume-item";

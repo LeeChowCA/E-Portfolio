@@ -2,7 +2,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { Bebas_Neue } from "next/font/google";
-import { Navbar, Footer } from "@/components";
+import { PageShell } from "@/components";
 import SnapshotCarousel from "@/components/snapshot-carousel";
 
 const bebas = Bebas_Neue({
@@ -85,10 +85,8 @@ export default function AboutPage() {
   const topSkill = sortedSkillFocus[0];
 
   return (
-    <div className="min-h-screen flex flex-col bg-white text-gray-900">
-      <Navbar />
-      <main className="flex-1">
-        <section className="relative overflow-hidden px-6 pb-16 pt-14 lg:pb-20 lg:pt-20">
+    <PageShell className="bg-white text-gray-900">
+        <section className="relative overflow-hidden px-6 pb-16 pt-14 lg:pb-20 lg:pt-20 animate-fade-up">
           <div className="pointer-events-none absolute inset-0">
             <div className="absolute -left-16 top-12 h-48 w-48 rounded-full bg-[#F4F4F4]" />
             <div className="absolute right-0 top-32 h-64 w-64 rounded-full bg-[#F8F8F8]" />
@@ -190,7 +188,7 @@ export default function AboutPage() {
           </div>
         </section>
 
-        <section className="px-6 pb-16">
+        <section className="px-6 pb-16 animate-fade-up">
           <div className="container mx-auto">
             <div className="h-px w-full bg-gray-200/80" />
             <div className="mt-6 px-1 sm:px-4">
@@ -245,7 +243,7 @@ export default function AboutPage() {
           </div>
         </section> */}
 
-        <section className="bg-[#F6F6F6] px-6 py-16">
+        <section className="bg-[#F6F6F6] px-6 py-16 animate-fade-up">
           <div className="container mx-auto grid items-center gap-10 lg:grid-cols-[1.1fr_0.9fr]">
             <div className="relative h-72 overflow-hidden rounded-3xl border border-gray-200 bg-white shadow-[0_18px_30px_rgba(0,0,0,0.08)]">
               <Image
@@ -275,7 +273,7 @@ export default function AboutPage() {
           </div>
         </section>
 
-        <section className="bg-[#F6F6F6] px-6 py-16">
+        <section className="bg-[#F6F6F6] px-6 py-16 animate-fade-up">
           <div className="container mx-auto">
             <div className="flex flex-wrap items-center justify-between gap-4">
               <h2 className="text-3xl font-semibold text-gray-900">
@@ -375,7 +373,7 @@ export default function AboutPage() {
           </div>
         </section>
 
-        <section className="px-6 py-16">
+        <section className="px-6 py-16 animate-fade-up">
           <div className="container mx-auto rounded-3xl border border-gray-200 bg-white p-8 shadow-[0_16px_32px_rgba(0,0,0,0.08)]">
             <div className="flex flex-wrap items-center justify-between gap-6">
               <div>
@@ -404,8 +402,6 @@ export default function AboutPage() {
             </div>
           </div>
         </section>
-      </main>
-      <Footer />
-    </div>
+    </PageShell>
   );
 }

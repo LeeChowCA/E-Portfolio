@@ -26,7 +26,7 @@ export function ContactForm() {
     <div className="bg-white">
       <section
         id="contact"
-        className="relative overflow-hidden px-6 pb-16 pt-20"
+        className="relative overflow-hidden px-6 pb-16 pt-20 animate-fade-up"
       >
         <div className="pointer-events-none absolute inset-0">
           <div className="absolute -left-20 top-12 h-56 w-56 rounded-full bg-[#F4F4F4]" />
@@ -107,7 +107,7 @@ export function ContactForm() {
         </div>
       </section>
 
-      <section className="bg-[#F6F6F6] px-8 py-16">
+      <section className="bg-[#F6F6F6] px-8 py-16 animate-fade-up">
         <div className="container mx-auto mb-12 text-center">
           <Typography variant="h2" color="blue-gray" className="mb-4">
             Send me an email
