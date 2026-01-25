@@ -2,7 +2,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { Bebas_Neue } from "next/font/google";
-import { PageShell } from "@/components";
+import { PageShell, RevealSection } from "@/components";
 import SnapshotCarousel from "@/components/snapshot-carousel";
 
 const bebas = Bebas_Neue({
@@ -86,7 +86,10 @@ export default function AboutPage() {
 
   return (
     <PageShell className="bg-white text-gray-900">
-        <section className="relative overflow-hidden px-6 pb-16 pt-14 lg:pb-20 lg:pt-20 animate-fade-up">
+        <RevealSection
+          className="relative overflow-hidden px-6 pb-16 pt-14 lg:pb-20 lg:pt-20"
+          direction="left"
+        >
           <div className="pointer-events-none absolute inset-0">
             <div className="absolute -left-16 top-12 h-48 w-48 rounded-full bg-[#F4F4F4]" />
             <div className="absolute right-0 top-32 h-64 w-64 rounded-full bg-[#F8F8F8]" />
@@ -186,16 +189,16 @@ export default function AboutPage() {
               </div>
             </div>
           </div>
-        </section>
+        </RevealSection>
 
-        <section className="px-6 pb-16 animate-fade-up">
+        <RevealSection className="px-6 pb-16" direction="right">
           <div className="container mx-auto">
             <div className="h-px w-full bg-gray-200/80" />
             <div className="mt-6 px-1 sm:px-4">
               <SnapshotCarousel images={SNAPSHOT_IMAGES} />
             </div>
           </div>
-        </section>
+        </RevealSection>
 {/* 
         <section className="px-6 py-16">
           <div className="container mx-auto grid items-center gap-10 lg:grid-cols-[1fr_auto_1fr]">
@@ -243,7 +246,7 @@ export default function AboutPage() {
           </div>
         </section> */}
 
-        <section className="bg-[#F6F6F6] px-6 py-16 animate-fade-up">
+        <RevealSection className="bg-[#F6F6F6] px-6 py-16" direction="left">
           <div className="container mx-auto grid items-center gap-10 lg:grid-cols-[1.1fr_0.9fr]">
             <div className="relative h-72 overflow-hidden rounded-3xl border border-gray-200 bg-white shadow-[0_18px_30px_rgba(0,0,0,0.08)]">
               <Image
@@ -271,9 +274,9 @@ export default function AboutPage() {
               </ul>
             </div>
           </div>
-        </section>
+        </RevealSection>
 
-        <section className="bg-[#F6F6F6] px-6 py-16 animate-fade-up">
+        <RevealSection className="bg-[#F6F6F6] px-6 py-16" direction="right">
           <div className="container mx-auto">
             <div className="flex flex-wrap items-center justify-between gap-4">
               <h2 className="text-3xl font-semibold text-gray-900">
@@ -371,9 +374,9 @@ export default function AboutPage() {
               </div>
             </div>
           </div>
-        </section>
+        </RevealSection>
 
-        <section className="px-6 py-16 animate-fade-up">
+        <RevealSection className="px-6 py-16" direction="left">
           <div className="container mx-auto rounded-3xl border border-gray-200 bg-white p-8 shadow-[0_16px_32px_rgba(0,0,0,0.08)]">
             <div className="flex flex-wrap items-center justify-between gap-6">
               <div>
@@ -401,7 +404,7 @@ export default function AboutPage() {
               </div>
             </div>
           </div>
-        </section>
+        </RevealSection>
     </PageShell>
   );
 }

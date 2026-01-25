@@ -9,7 +9,7 @@ import {
   CursorArrowRaysIcon,
   ArrowRightIcon,
 } from "@heroicons/react/24/solid";
-import { ResumeItem } from "@/components";
+import { ResumeItem, RevealSection } from "@/components";
 import Link from "next/link";
 
 const RESUME_ITEMS = [
@@ -29,7 +29,7 @@ const RESUME_ITEMS = [
 
 export function Resume() {
   return (
-    <section className="px-8 py-24 animate-fade-up">
+    <RevealSection className="px-8 py-24" direction="left">
       <div className="container mx-auto grid w-full grid-cols-1 items-center gap-16 lg:grid-cols-2">
         <div className="col-span-1">
           <Typography variant="h2" color="blue-gray">
@@ -60,7 +60,7 @@ export function Resume() {
           ))}
         </div>
       </div>
-    </section>
+    </RevealSection>
   );
 }
 

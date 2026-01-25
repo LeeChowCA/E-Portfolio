@@ -10,7 +10,7 @@ import {
   DocumentTextIcon,
 } from "@heroicons/react/24/solid";
 import { Bebas_Neue } from "next/font/google";
-import { SkillCard } from "@/components";
+import { RevealSection, SkillCard } from "@/components";
 
 const bebas = Bebas_Neue({
   subsets: ["latin"],
@@ -88,9 +88,10 @@ export function Skills() {
 
   return (
     <div className="bg-white">
-      <section
+      <RevealSection
         id="skills"
-        className="relative overflow-hidden bg-white px-6 pb-16 pt-20 animate-fade-up"
+        className="relative overflow-hidden bg-white px-6 pb-16 pt-20"
+        direction="left"
       >
         <div className="pointer-events-none absolute inset-0">
           <div className="absolute -left-20 top-12 h-56 w-56 rounded-full bg-[#F4F4F4]" />
@@ -195,9 +196,12 @@ export function Skills() {
             </div>
           </div>
         </div>
-      </section>
+      </RevealSection>
 
-      <section className="bg-[#F6F6F6] px-8 pb-16 pt-16 animate-fade-up">
+      <RevealSection
+        className="bg-[#F6F6F6] px-8 pb-16 pt-16"
+        direction="right"
+      >
         <div className="container mx-auto mb-16 text-center">
           <Typography color="blue-gray" className="mb-2 font-bold uppercase">
             my skills
@@ -219,7 +223,7 @@ export function Skills() {
             <SkillCard key={idx} {...props} />
           ))}
         </div>
-      </section>
+      </RevealSection>
     </div>
   );
 }

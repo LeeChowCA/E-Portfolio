@@ -3,6 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { Bebas_Neue } from "next/font/google";
+import { RevealSection } from "@/components";
 
 const PROJECTS = [
   {
@@ -134,7 +135,11 @@ function ProjectLink({ href, className, children }) {
 export function Projects() {
   return (
     <div className="bg-white">
-      <section id="projects" className="relative overflow-hidden px-6 pb-16 pt-20 animate-fade-up">
+      <RevealSection
+        id="projects"
+        className="relative overflow-hidden px-6 pb-16 pt-20"
+        direction="left"
+      >
         <div className="pointer-events-none absolute inset-0">
           <div className="absolute -left-20 top-12 h-56 w-56 rounded-full bg-[#F4F4F4]" />
           <div className="absolute right-0 top-32 h-72 w-72 rounded-full bg-[#F9F9F9]" />
@@ -236,9 +241,9 @@ export function Projects() {
             </div>
           </div>
         </div>
-      </section>
+      </RevealSection>
 
-      <section className="bg-[#F7F7F7] px-6 py-16 animate-fade-up">
+      <RevealSection className="bg-[#F7F7F7] px-6 py-16" direction="right">
         <div className="container mx-auto">
           <div className="flex flex-wrap items-end justify-between gap-4">
             <div>
@@ -288,9 +293,9 @@ export function Projects() {
             ))}
           </div>
         </div>
-      </section>
+      </RevealSection>
 
-      <section className="px-6 py-16 animate-fade-up">
+      <RevealSection className="px-6 py-16" direction="left">
         <div className="container mx-auto">
           <div className="flex flex-wrap items-end justify-between gap-4">
             <div>
@@ -340,7 +345,7 @@ export function Projects() {
             ))}
           </div>
         </div>
-      </section>
+      </RevealSection>
     </div>
   );
 }

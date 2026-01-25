@@ -14,6 +14,7 @@ import {
 } from "@material-tailwind/react";
 import { EnvelopeIcon, PhoneIcon, TicketIcon } from "@heroicons/react/24/solid";
 import { Bebas_Neue } from "next/font/google";
+import { RevealSection } from "@/components";
 
 const bebas = Bebas_Neue({
   subsets: ["latin"],
@@ -24,9 +25,10 @@ const bebas = Bebas_Neue({
 export function ContactForm() {
   return (
     <div className="bg-white">
-      <section
+      <RevealSection
         id="contact"
-        className="relative overflow-hidden px-6 pb-16 pt-20 animate-fade-up"
+        className="relative overflow-hidden px-6 pb-16 pt-20"
+        direction="left"
       >
         <div className="pointer-events-none absolute inset-0">
           <div className="absolute -left-20 top-12 h-56 w-56 rounded-full bg-[#F4F4F4]" />
@@ -105,9 +107,9 @@ export function ContactForm() {
             </div>
           </div>
         </div>
-      </section>
+      </RevealSection>
 
-      <section className="bg-[#F6F6F6] px-8 py-16 animate-fade-up">
+      <RevealSection className="bg-[#F6F6F6] px-8 py-16" direction="right">
         <div className="container mx-auto mb-12 text-center">
           <Typography variant="h2" color="blue-gray" className="mb-4">
             Send me an email
@@ -254,7 +256,7 @@ export function ContactForm() {
             </CardBody>
           </Card>
         </div>
-      </section>
+      </RevealSection>
     </div>
   );
 }
