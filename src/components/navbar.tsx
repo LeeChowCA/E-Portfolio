@@ -3,12 +3,13 @@
 
 import type { CSSProperties } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { Navbar as MTNavbar } from "@material-tailwind/react";
 import { NAV_ITEMS, SOCIAL_LINKS } from "./site-links";
 
 export function Navbar({
   className = "",
-  animate = false,
+  animate = true,
   style,
 }: {
   className?: string;
@@ -21,6 +22,7 @@ export function Navbar({
   const socialClassName = animate ? "landing-header-social" : "";
   const navBaseDelay = 180;
   const socialBaseDelay = 360;
+  const pathname = usePathname();
 
   return (
     <MTNavbar
@@ -46,21 +48,29 @@ export function Navbar({
         <div className="flex flex-wrap items-center gap-6">
           <nav>
             <ul className="flex flex-wrap items-center gap-6 text-xs uppercase tracking-[0.25em] text-white/70 md:text-sm">
-              {NAV_ITEMS.map((item, index) => (
-                <li key={item.label}>
-                  <a
-                    href={item.href}
-                    className={`transition-colors duration-200 hover:text-white ${navItemClassName}`}
-                    style={
-                      animate
-                        ? { animationDelay: `${navBaseDelay + index * 60}ms` }
-                        : undefined
-                    }
-                  >
-                    {item.label}
-                  </a>
-                </li>
-              ))}
+              {NAV_ITEMS.map((item, index) => {
+                const isActive =
+                  pathname === item.href ||
+                  (item.href !== "/" && pathname?.startsWith(item.href));
+                const itemClassName = isActive
+                  ? "rounded-full bg-white/15 px-3 py-1 text-white"
+                  : "text-white/70";
+                return (
+                  <li key={item.label}>
+                    <Link
+                      href={item.href}
+                      className={`transition-colors duration-200 hover:text-white ${itemClassName} ${navItemClassName}`}
+                      style={
+                        animate
+                          ? { animationDelay: `${navBaseDelay + index * 60}ms` }
+                          : undefined
+                      }
+                    >
+                      {item.label}
+                    </Link>
+                  </li>
+                );
+              })}
             </ul>
           </nav>
 
@@ -93,3 +103,4 @@ export function Navbar({
 }
 
 export default Navbar;
+
