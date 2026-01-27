@@ -100,8 +100,8 @@ const FEATURED_PROJECTS = [
     shortTitle: "AI Agent",
     desc:
       "An AI agent that automates workflows, answers questions, and orchestrates tools with context.",
-    img: "/image/developer.jpg",
-    link: "https://goat-notes-git-main-leechowcas-projects.vercel.app",
+    img: "/image/agent/agent-wordpress-shadowdom.png",
+    link: "/agent",
   },
   {
     kicker: "3D FPS GAME",

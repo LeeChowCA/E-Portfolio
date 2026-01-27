@@ -13,16 +13,16 @@ const FEATURED_PROJECTS = [
     img: "/image/lms/langding_page.png",
     tags: ["Dashboards", "Course Builder", "AI Quizzes"],
     cta: "View Live Demo",
-    href: "https://language-cosmos-lms.vercel.app/",
+    href: "/lms",
   },
   {
     kicker: "AI Agent",
     title: "AI Agent Project",
     desc: "An AI agent that automates workflows, answers questions, and orchestrates tools with context.",
-    img: "/image/portfolio.png",
+    img: "/image/agent/agent-wordpress-shadowdom.png",
     tags: ["Automation", "RAG", "Tooling"],
     cta: "View Project",
-    href: "",
+    href: "/agent",
   },
   {
     kicker: "3D FPS Game",
@@ -52,9 +52,12 @@ export function FeaturedProjects({ compact = false, animate = false }) {
   const gridClassName = compact
     ? "grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3 justify-items-center"
     : "grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3 justify-items-center";
+  const wrapperClassName = compact
+    ? "group block w-full max-w-[320px]"
+    : "group block w-full max-w-[360px]";
   const cardClassName = compact
-    ? `group w-full max-w-[320px] overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-[0_14px_26px_rgba(15,15,15,0.1)] ${animate ? "" : "animate-fade-up"}`
-    : `group w-full max-w-[360px] overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-[0_18px_28px_rgba(15,15,15,0.08)] ${animate ? "" : "animate-fade-up"}`;
+    ? `overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-[0_14px_26px_rgba(15,15,15,0.1)] ${animate ? "" : "animate-fade-up"}`
+    : `overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-[0_18px_28px_rgba(15,15,15,0.08)] ${animate ? "" : "animate-fade-up"}`;
   const imageClassName = compact
     ? "relative h-36 w-full overflow-hidden rounded-xl bg-white"
     : "relative h-52 w-full overflow-hidden";
@@ -126,9 +129,8 @@ export function FeaturedProjects({ compact = false, animate = false }) {
               </Button>
             );
 
-            return (
+            const card = (
               <div
-                key={project.title}
                 className={`${cardClassName} ${animate ? "landing-project-card" : ""}`}
                 style={cardStyle}
               >
@@ -171,6 +173,35 @@ export function FeaturedProjects({ compact = false, animate = false }) {
                     </>
                   ) : null}
                 </div>
+              </div>
+            );
+
+            if (compact && project.href) {
+              if (isExternal) {
+                return (
+                  <a
+                    key={project.title}
+                    href={project.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={wrapperClassName}
+                    aria-label={project.title}
+                  >
+                    {card}
+                  </a>
+                );
+              }
+
+              return (
+                <Link key={project.title} href={project.href} className={wrapperClassName}>
+                  {card}
+                </Link>
+              );
+            }
+
+            return (
+              <div key={project.title} className={wrapperClassName}>
+                {card}
               </div>
             );
           })}
