@@ -1,15 +1,8 @@
 // @ts-nocheck
 import Image from "next/image";
 import Link from "next/link";
-import { Bebas_Neue } from "next/font/google";
 import { PageShell, RevealSection } from "@/components";
 import SnapshotCarousel from "@/components/snapshot-carousel";
-
-const bebas = Bebas_Neue({
-  subsets: ["latin"],
-  weight: ["400"],
-  display: "swap",
-});
 
 const SNAPSHOT_IMAGES = [
   { src: "/image/snapshot/1.jpg", alt: "Snapshot 1" },
@@ -100,7 +93,7 @@ export default function AboutPage() {
                 About
               </p>
               <h1
-                className={`${bebas.className} mt-3 text-6xl uppercase tracking-[0.08em] text-gray-900 sm:text-7xl`}
+                className="font-bebas mt-3 text-6xl uppercase tracking-[0.08em] text-gray-900 sm:text-7xl"
               >
                 about.
               </h1>

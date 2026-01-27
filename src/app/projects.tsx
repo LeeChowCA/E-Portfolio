@@ -1,8 +1,8 @@
 "use client";
 
+import type { ReactNode } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { Bebas_Neue } from "next/font/google";
 import { RevealSection } from "@/components";
 
 const PROJECTS = [
@@ -78,12 +78,6 @@ const PROJECTS = [
   },
 ];
 
-const bebas = Bebas_Neue({
-  subsets: ["latin"],
-  weight: ["400"],
-  display: "swap",
-});
-
 const FEATURED_PROJECTS = [
   {
     kicker: "FULL-STACK LMS",
@@ -116,7 +110,13 @@ const FEATURED_PROJECTS = [
 
 const OTHER_PROJECTS = PROJECTS;
 
-function ProjectLink({ href, className, children }) {
+type ProjectLinkProps = {
+  href: string;
+  className?: string;
+  children: ReactNode;
+};
+
+function ProjectLink({ href, className, children }: ProjectLinkProps) {
   const isExternal = href.startsWith("http");
   if (isExternal) {
     return (
@@ -150,7 +150,7 @@ export function Projects() {
               Portfolio
             </p>
             <h1
-              className={`${bebas.className} mt-4 text-6xl uppercase tracking-[0.08em] text-gray-900 sm:text-7xl`}
+              className="font-bebas mt-4 text-6xl uppercase tracking-[0.08em] text-gray-900 sm:text-7xl"
             >
               portfolio.
             </h1>

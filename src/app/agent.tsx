@@ -1,15 +1,9 @@
+// @ts-nocheck
 "use client";
 
 import { useState } from "react";
 import Image from "next/image";
-import { Bebas_Neue } from "next/font/google";
 import { Button, Dialog, DialogBody, Tooltip, Typography } from "@material-tailwind/react";
-
-const bebas = Bebas_Neue({
-  subsets: ["latin"],
-  weight: ["400"],
-  display: "swap",
-});
 
 const AGENT_GALLERY = [
   {
@@ -73,7 +67,7 @@ export function AgentProject() {
                 AI Agent Project
               </p>
               <h1
-                className={`${bebas.className} mt-4 text-6xl uppercase tracking-[0.08em] text-gray-900 sm:text-7xl`}
+                className="font-bebas mt-4 text-6xl uppercase tracking-[0.08em] text-gray-900 sm:text-7xl"
               >
                 Agent Intelligence
               </h1>

@@ -9,14 +9,7 @@ import {
   EyeIcon,
   DocumentTextIcon,
 } from "@heroicons/react/24/solid";
-import { Bebas_Neue } from "next/font/google";
 import { RevealSection, SkillCard } from "@/components";
-
-const bebas = Bebas_Neue({
-  subsets: ["latin"],
-  weight: ["400"],
-  display: "swap",
-});
 
 const SKILL_HIGHLIGHTS = [
   {
@@ -103,7 +96,7 @@ export function Skills() {
               Welcome
             </p>
             <h1
-              className={`${bebas.className} mt-4 text-6xl uppercase tracking-[0.08em] text-gray-900 sm:text-7xl`}
+              className="font-bebas mt-4 text-6xl uppercase tracking-[0.08em] text-gray-900 sm:text-7xl"
             >
               skills.
             </h1>

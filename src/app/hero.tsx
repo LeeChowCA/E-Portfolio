@@ -4,13 +4,6 @@
 import { useRef, useState } from "react";
 import Image from "next/image";
 import { Typography } from "@material-tailwind/react";
-import { Bebas_Neue } from "next/font/google";
-
-const bebas = Bebas_Neue({
-  subsets: ["latin"],
-  weight: ["400"],
-  display: "swap",
-});
 
 function Hero({ compact = false, animate = false }) {
   const sectionRef = useRef(null);
@@ -48,11 +41,11 @@ function Hero({ compact = false, animate = false }) {
     ? "relative z-10 px-4 py-7 sm:px-6 sm:py-9"
     : "relative z-10 px-4 py-8 sm:px-6 sm:py-10";
   const titleClassName = compact
-    ? `${bebas.className} mt-3 text-5xl uppercase tracking-[0.08em] text-[#111111] sm:text-6xl lg:text-6xl xl:text-6xl`
-    : `${bebas.className} mt-3 text-5xl uppercase tracking-[0.08em] text-[#111111] sm:text-6xl lg:text-6xl xl:text-7xl`;
+    ? "font-bebas mt-3 text-5xl uppercase tracking-[0.08em] text-[#111111] sm:text-6xl lg:text-6xl xl:text-6xl"
+    : "font-bebas mt-3 text-5xl uppercase tracking-[0.08em] text-[#111111] sm:text-6xl lg:text-6xl xl:text-7xl";
   const codeTitleClassName = compact
-    ? `${bebas.className} mt-3 text-5xl uppercase tracking-[0.08em] text-gray-900 sm:text-6xl lg:text-6xl xl:text-6xl`
-    : `${bebas.className} mt-3 text-5xl uppercase tracking-[0.08em] text-gray-900 sm:text-6xl lg:text-6xl xl:text-7xl`;
+    ? "font-bebas mt-3 text-5xl uppercase tracking-[0.08em] text-gray-900 sm:text-6xl lg:text-6xl xl:text-6xl"
+    : "font-bebas mt-3 text-5xl uppercase tracking-[0.08em] text-gray-900 sm:text-6xl lg:text-6xl xl:text-7xl";
   const imageWrapClassName = compact
     ? "relative aspect-square w-[clamp(14rem,30vw,26rem)]"
     : "relative aspect-square w-[clamp(14rem,32vw,28rem)]";

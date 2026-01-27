@@ -1,3 +1,5 @@
+"use client";
+
 import { PageShell } from "@/components";
 import FeaturedProjects from "@/app/featured-projects";
 
