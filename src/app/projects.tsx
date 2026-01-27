@@ -92,7 +92,7 @@ const FEATURED_PROJECTS = [
     desc:
       "A full-stack LMS with student and instructor dashboards, course management, and AI-powered quizzes.",
     img: "/image/lms/dashboard_student.png",
-    link: "https://www.rocketdrones.com",
+    link: "/lms",
   },
   {
     kicker: "AI AGENT",
